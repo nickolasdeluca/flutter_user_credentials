@@ -3,7 +3,7 @@ library flutter_user_credentials;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const kKeyName = 'USER_CREDENTIALS';
+const _kKeyName = 'USER_CREDENTIALS';
 
 class Credentials {
   String? host;
@@ -27,9 +27,9 @@ class Credentials {
   static Future<Credentials> retrieveIfExists() async {
     final preferences = await SharedPreferences.getInstance();
 
-    if (preferences.containsKey(kKeyName)) {
+    if (preferences.containsKey(_kKeyName)) {
       return Credentials.fromJson(
-        json.decode(preferences.getString(kKeyName)!),
+        json.decode(preferences.getString(_kKeyName)!),
       );
     }
 
@@ -38,7 +38,7 @@ class Credentials {
 
   save() async {
     final preferences = await SharedPreferences.getInstance();
-    preferences.setString(kKeyName, json.encode(toJson()));
+    preferences.setString(_kKeyName, json.encode(toJson()));
   }
 
   factory Credentials.fromJson(Map<String, dynamic> json) {
@@ -50,7 +50,9 @@ class Credentials {
     credentials.password = json['password'];
     credentials.accessToken = json['accessToken'];
     credentials.refreshToken = json['refreshToken'];
-    credentials.expirationDate = json['expirationDate'];
+    credentials.expirationDate = DateTime.tryParse(
+      json['expirationDate'].toString(),
+    );
 
     return credentials;
   }

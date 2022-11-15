@@ -30,11 +30,15 @@ void main() {
   });
 
   test('test import of json string', () {
+    final date = DateTime.now();
+
     Map<String, dynamic> json = {
       'host': 'myhost.com',
+      'port': 9000,
       'user': 'myUser',
       'password': 'myPassword',
       'accessToken': '<!23myR@nd0*mT0k3n',
+      'expirationDate': date.toIso8601String()
     };
 
     final credentials = Credentials.fromJson(json);
