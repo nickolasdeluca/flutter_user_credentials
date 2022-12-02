@@ -6,6 +6,30 @@ import 'package:flutter_user_credentials/flutter_user_credentials.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  test('constructor', () {
+    final date = DateTime.now();
+
+    Credentials credentials = Credentials(
+      host: 'myhost.com',
+      port: 0,
+      user: 'myUser',
+      password: 'myPassword',
+      accessToken: '<!23myR@nd0*mT0k3n',
+      refreshToken: '[1ts@r3fr3shT0k3n]',
+      expirationDate: date,
+    );
+
+    expect(credentials.toJson(), {
+      'host': 'myhost.com',
+      'port': 0,
+      'user': 'myUser',
+      'password': 'myPassword',
+      'accessToken': '<!23myR@nd0*mT0k3n',
+      'refreshToken': '[1ts@r3fr3shT0k3n]',
+      'expirationDate': date.toIso8601String()
+    });
+  });
+
   test('test manual data', () {
     final credentials = Credentials();
     final date = DateTime.now();
