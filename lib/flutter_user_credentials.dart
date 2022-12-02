@@ -22,13 +22,13 @@ class Credentials {
   ///
   /// The value [expirationDate] should be stored as Iso8601String, although you can use other formats if they are compatible.
   Credentials({
-    String? host,
-    int? port,
-    String? user,
-    String? password,
-    String? accessToken,
-    String? refreshToken,
-    DateTime? expirationDate,
+    this.host,
+    this.port,
+    this.user,
+    this.password,
+    this.accessToken,
+    this.refreshToken,
+    this.expirationDate,
   });
 
   /// Retrieves stored data if it exists, if it doesn't, runs an empty constructor.

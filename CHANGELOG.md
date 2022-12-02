@@ -11,3 +11,7 @@
 ## 0.0.3
 
 * Fixes formatting of changelog document
+
+## 0.0.4
+
+* Fixes constructor with args
