@@ -58,11 +58,29 @@ A simple handler for user credentials that can be easily stored and retrieved
     'expirationDate': date.toIso8601String()
   };
 
-  credentials.save();
+  await credentials.save();
 ```
 
-### and you can retrieve saved values
+`This method is async, it is recommended that you wait for it before continuing`
+
+### You can retrieve saved values
 
 ``` dart
-  credentials.retrieveIfExists();
+  Credentials credentials = await credentials.retrieveIfExists();
 ```
+
+`This method is async, it is recommended that you wait for it before continuing`
+
+### You can clear all attributes of a credential
+
+``` dart
+  credentials.clear();
+```
+
+### You can purge credentials from shared preferences through a static method
+
+``` dart
+  await Credentials.purge();
+```
+
+`This method is async, it is recommended that you wait for it before continuing`

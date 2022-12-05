@@ -122,4 +122,45 @@ void main() {
 
     expect(credentials.toJson(), jsonCredentials);
   });
+
+  test('test purging credentials', () async {
+    Credentials blankCredentials = Credentials();
+
+    Map<String, dynamic> jsonCredentials = {
+      'host': 'myhost.com',
+      'user': 'myUser',
+      'password': 'myPassword',
+      'accessToken': '<!23myR@nd0*mT0k3n',
+    };
+
+    SharedPreferences.setMockInitialValues(
+      {'USER_CREDENTIALS': json.encode(jsonCredentials)},
+    );
+
+    await Credentials.purge();
+
+    Credentials credentials = await Credentials.retrieveIfExists();
+
+    expect(credentials.toJson(), blankCredentials.toJson());
+  });
+
+  test('test clear credentials', () async {
+    Credentials blankCredentials = Credentials();
+
+    final date = DateTime.now();
+
+    Credentials credentials = Credentials(
+      host: 'myhost.com',
+      port: 0,
+      user: 'myUser',
+      password: 'myPassword',
+      accessToken: '<!23myR@nd0*mT0k3n',
+      refreshToken: '[1ts@r3fr3shT0k3n]',
+      expirationDate: date,
+    );
+
+    credentials.clear();
+
+    expect(credentials.toJson(), blankCredentials.toJson());
+  });
 }

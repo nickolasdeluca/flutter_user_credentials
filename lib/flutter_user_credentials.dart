@@ -71,6 +71,27 @@ class Credentials {
     return credentials;
   }
 
+  /// Removes credentials from shared preferences
+  static purge() async {
+    final preferences = await SharedPreferences.getInstance();
+
+    if (preferences.containsKey(_kKeyName)) {
+      preferences.remove(_kKeyName);
+    }
+  }
+
+  /// Set all attributes to null
+  clear() {
+    accessToken = null;
+    host = null;
+    port = null;
+    user = null;
+    password = null;
+    accessToken = null;
+    refreshToken = null;
+    expirationDate = null;
+  }
+
   /// Parses a Credentials Object to a JSON Object
   Map<String, dynamic> toJson() {
     return {

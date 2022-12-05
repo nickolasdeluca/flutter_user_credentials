@@ -15,3 +15,8 @@
 ## 0.0.4
 
 * Fixes constructor with args
+
+## 0.0.5
+
+* Added `clear` method to set all attributes to null
+* Added `purge` method to remove credentials from shared preferences

@@ -1,6 +1,6 @@
 name: flutter_user_credentials
 description: A flutter package designed to handle user credentials and provide an easy way of storing and retrieving saved credentials.
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/nickolasdeluca/flutter_user_credentials
 
 environment:
